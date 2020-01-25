@@ -41,9 +41,13 @@ export type BasicOptions = DecoratorTypeOptions & DescriptionOptions;
 export type AdvancedOptions = BasicOptions &
   DepreciationOptions &
   SchemaNameOptions;
+
+  
+  declare type AuthChecker<ContextType = {}, RoleType = string> = (resolverData: any, roles: any[]) => boolean | Promise<boolean>;  
 export interface BuildSchemaOptions {
   dateScalarMode?: DateScalarMode;
   scalarsMap?: ScalarsTypeMap[];
+  authChecker?: AuthChecker<any, any>;
 }
 export type DateScalarMode = 'isoDate' | 'timestamp';
 export interface ScalarsTypeMap {
